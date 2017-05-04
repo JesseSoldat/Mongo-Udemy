@@ -9,6 +9,6 @@ describe('Creating records', () => {
 				//Has joe been saved?
 				assert(!joe.isNew);
 				done();
-			});
+			}).catch(e => done(e));
 	});
 });

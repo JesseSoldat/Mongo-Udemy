@@ -13,7 +13,8 @@ describe('Subdocuments', () => {
 			.then(user => {
 				assert(user.posts[0].title === 'PostTitle');
 				done();
-			});
+			})
+			.catch(e => done(e));
 	});
 
 	it('Can add subdocuments to an existing recored', (done) => {
@@ -32,7 +33,8 @@ describe('Subdocuments', () => {
 			.then(user => {
 				assert(user.posts[0].title === 'New Post');
 				done();
-			});
+			})
+			.catch(e => done(e));
 	});
 
 	it('can remove a existing subdocument', () => {
@@ -52,7 +54,8 @@ describe('Subdocuments', () => {
 			.then(user => {
 				assert(user.posts.length === 0);
 				done();
-			});
+			})
+			.catch(e => done(e));
 	});
 });
 

@@ -7,7 +7,8 @@ describe('Reading users out of the database', () => {
 	beforeEach((done) => {
 		joe = new User( {name: 'Joe'} );
 		joe.save()
-			.then(() => done());
+			.then(() => done())
+			.catch(e => done(e));
 	});
 
 	it('finds all users with a name of joe', (done) => {
@@ -15,7 +16,8 @@ describe('Reading users out of the database', () => {
 			.then((users) => {
 				assert(users[0]._id.toString() === joe._id.toString());
 				done();
-			});
+			})
+			.catch(e => done(e));
 	});
 
 	it('find a user with a particular id', (done) => {
@@ -23,6 +25,7 @@ describe('Reading users out of the database', () => {
 			.then(user => {
 				assert(user.name = 'Joe');
 				done();
-			});
+			})
+			.catch(e => done(e));
 	});
 });

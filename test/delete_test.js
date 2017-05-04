@@ -7,8 +7,9 @@ describe('Deleting as user', () => {
 	beforeEach((done) => {
 		joe = new User({name: 'Joe'});
 		joe.save()
-			.then(() => done());		
-	});
+			.then(() => done())
+			.catch(e => done(e));		
+	})
 
 	it('model instance remove', (done) => {
 		joe.remove()
@@ -16,7 +17,7 @@ describe('Deleting as user', () => {
 			.then(user => {
 				assert(user === null);
 				done();
-			})
+			}).catch(e => done(e));
 	});
 
 	it('class method remove', (done) => {
@@ -25,7 +26,7 @@ describe('Deleting as user', () => {
 			.then((user) => {
 				assert(user === null);
 				done();
-			});
+			}).catch(e => done(e));
 	});
 
 	it('class method findOneAndRemove', (done) => {
@@ -34,7 +35,7 @@ describe('Deleting as user', () => {
 			.then((user) => {
 				assert(user === null);
 				done();
-			});
+			}).catch(e => done(e));
 	});
 
 	it('class method findByIdAndRemove', (done) => {
@@ -43,7 +44,7 @@ describe('Deleting as user', () => {
 			.then((user) => {
 				assert(user === null);
 				done();
-			});
+			}).catch(e => done(e));
 	});
 
 
