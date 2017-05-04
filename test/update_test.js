@@ -34,6 +34,21 @@ describe('Updating records', () => {
 				});
 	});
 
+	// it.only('instance type using set and save long form', (done) => {
+	// 	joe.set('name', 'Alex');
+	// 	joe.save()
+	// 		.then(() => {
+	// 				User.find({})
+	// 					.then(users => {	
+	// 						console.log(users);					
+	// 						assert(users.length === 1);
+	// 						assert(users[0].name === 'Alex');
+	// 						done();
+	// 					}).catch(e => done(e)); 
+
+	// 			});
+	// });
+
 	
 	it('instance type using set and save', (done) => {
 		joe.set('name', 'Alex');

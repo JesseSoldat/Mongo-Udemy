@@ -24,11 +24,35 @@ describe('Associations', () => {
     User.findOne({ name: 'Joe' })
       .populate('blogPosts')
       .then((user) => {
+      	// console.log(user);
         assert(user.blogPosts[0].title === 'JS is fun');
         done();
       }).catch(e => done(e));
   });
 
+	it('saves a full relation graph', (done) => {
+		User.findOne({name: 'Joe'})
+			.populate({
+				path: 'blogPosts',
+				populate: {
+					path: 'comments',
+					model: 'comment',
+					populate: {
+						path: 'user',
+						model: 'user'
+					}
+				}
+			})
+			.then(user => {
+				//Pretty print the user and all its relations
+				// console.log(JSON.stringify({user}, null, 2));
+				assert(user.name === 'Joe');
+				assert(user.blogPosts[0].title === 'JS is fun');
+				assert(user.blogPosts[0].comments[0].content === 'Nice job');
+				assert(user.blogPosts[0].comments[0].user.name === 'Joe');
+				done();
+			}).catch(err => done(err));
+	});
 
 });
 
