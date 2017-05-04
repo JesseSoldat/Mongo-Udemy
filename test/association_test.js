@@ -46,9 +46,17 @@ describe('Associations', () => {
 			.then(user => {
 				//Pretty print the user and all its relations
 				// console.log(JSON.stringify({user}, null, 2));
-				assert(user.name === 'Joe');
-				assert(user.blogPosts[0].title === 'JS is fun');
-				assert(user.blogPosts[0].comments[0].content === 'Nice job');
+
+				const {name} = user, 
+							{title} = user.blogPosts[0],
+							{content} = user.blogPosts[0].comments[0];
+				// assert(user.name === 'Joe');
+				// assert(user.blogPosts[0].title === 'JS is fun');
+				// assert(user.blogPosts[0].comments[0].content === 'Nice job');
+				// assert(user.blogPosts[0].comments[0].user.name === 'Joe');
+				assert(name === 'Joe');
+				assert(title === 'JS is fun');
+				assert(content === 'Nice job');
 				assert(user.blogPosts[0].comments[0].user.name === 'Joe');
 				done();
 			}).catch(err => done(err));
